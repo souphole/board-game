@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=3 uid="uid://x2tgsgciu6nw"]
+
+[ext_resource type="Script" path="res://scenes_scripts/die/die.gd" id="1_2goe3"]
+[ext_resource type="Texture2D" uid="uid://c6pblwcitmd06" path="res://assets/dicebasetest.png" id="2_dl76a"]
+[ext_resource type="Theme" uid="uid://cov744d3wgiq6" path="res://main_theme.tres" id="3_a2wws"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_440vx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dl76a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwgu7"]
+size = Vector2(128, 128)
+
+[sub_resource type="Animation" id="Animation_vepas"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hu7li"]
+resource_name = "enter"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2),
+"transitions": PackedFloat32Array(0.75, 1.25, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sxhgl"]
+resource_name = "exit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.1),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -80), Vector2(0, -60)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_78wqx"]
+_data = {
+"RESET": SubResource("Animation_vepas"),
+"enter": SubResource("Animation_hu7li"),
+"exit": SubResource("Animation_sxhgl")
+}
+
+[node name="die" type="Area2D"]
+script = ExtResource("1_2goe3")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.119, 0.119)
+sprite_frames = SubResource("SpriteFrames_440vx")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jwgu7")
+
+[node name="center" type="CenterContainer" parent="."]
+use_top_left = true
+
+[node name="value" type="Label" parent="center"]
+layout_mode = 2
+theme = ExtResource("3_a2wws")
+text = "99"
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_78wqx")
+}

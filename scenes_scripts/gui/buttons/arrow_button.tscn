@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bth0iqltc27ei"]
+
+[ext_resource type="Script" path="res://scenes_scripts/gui/buttons/arrow_button.gd" id="1_7w7qq"]
+[ext_resource type="Texture2D" uid="uid://dujy0ed6jyq3s" path="res://assets/arrowwhite.png" id="1_ad71a"]
+[ext_resource type="Theme" uid="uid://cov744d3wgiq6" path="res://main_theme.tres" id="2_fapt0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3myho"]
+
+[node name="ArrowButton" type="CenterContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.1, 0.1)
+theme = ExtResource("2_fapt0")
+use_top_left = true
+script = ExtResource("1_7w7qq")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("2_fapt0")
+theme_type_variation = &"ArrowButton"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3myho")
+icon = ExtResource("1_ad71a")
+icon_alignment = 1

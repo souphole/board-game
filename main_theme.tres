@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cov744d3wgiq6"]
+
+[ext_resource type="FontFile" uid="uid://bokjaj14oimx6" path="res://assets/BowlbyOne-Regular.ttf" id="1_dtdna"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rgxql"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_faaii"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4u54y"]
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnjtj"]
+bg_color = Color(0.22, 0.22, 0.22, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[resource]
+ArrowButton/base_type = &"Button"
+ArrowButton/styles/hover = SubResource("StyleBoxEmpty_rgxql")
+ArrowButton/styles/normal = SubResource("StyleBoxEmpty_faaii")
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("1_dtdna")
+Button/styles/hover = SubResource("StyleBoxFlat_4u54y")
+HitLabel/base_type = &"Label"
+HitLabel/colors/font_color = Color(1, 0.966667, 0, 1)
+HitLabel/constants/outline_size = 30
+HitLabel/font_sizes/font_size = 80
+Label/font_sizes/font_size = 60
+Label/fonts/font = ExtResource("1_dtdna")
+MarginContainer/constants/margin_bottom = 100
+MarginContainer/constants/margin_left = 100
+MarginContainer/constants/margin_right = 100
+MarginContainer/constants/margin_top = 100
+PreviewPanel/base_type = &"PanelContainer"
+PreviewPanel/styles/panel = SubResource("StyleBoxFlat_dnjtj")
+VBoxContainer/constants/separation = 8

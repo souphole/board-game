@@ -1,0 +1,87 @@
+[gd_scene load_steps=16 format=3 uid="uid://ha5mkxm4kxeg"]
+
+[ext_resource type="Texture2D" uid="uid://caooo36pk545s" path="res://assets/npesta.png" id="1_bw6n4"]
+[ext_resource type="Script" path="res://scenes_scripts/player/player.gd" id="1_hvt5w"]
+[ext_resource type="PackedScene" uid="uid://bj1waxlxnnjbq" path="res://scenes_scripts/player/dice_container.tscn" id="3_5rqdo"]
+[ext_resource type="Script" path="res://scenes_scripts/player/states/state_machine.gd" id="3_6i6fx"]
+[ext_resource type="Script" path="res://scenes_scripts/player/states/init.gd" id="4_q30mq"]
+[ext_resource type="Script" path="res://scenes_scripts/player/states/idle.gd" id="5_uh0e2"]
+[ext_resource type="Script" path="res://scenes_scripts/player/states/prepare_move.gd" id="6_3k13u"]
+[ext_resource type="Script" path="res://scenes_scripts/player/states/move.gd" id="6_poih0"]
+[ext_resource type="Script" path="res://scenes_scripts/player/states/spawn_arrows.gd" id="7_ku1ub"]
+[ext_resource type="Script" path="res://scenes_scripts/player/states/awaiting_arrow_click.gd" id="8_3petj"]
+[ext_resource type="Script" path="res://scenes_scripts/player/states/prepare_dice.gd" id="10_no384"]
+[ext_resource type="Script" path="res://scenes_scripts/player/states/await_jump.gd" id="12_mc8oc"]
+[ext_resource type="Script" path="res://scenes_scripts/player/states/jumping.gd" id="13_cunyn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4h1ke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bw6n4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tr3iw"]
+size = Vector2(120, 120)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_hvt5w")
+dev = true
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -60)
+sprite_frames = SubResource("SpriteFrames_4h1ke")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -60)
+shape = SubResource("RectangleShape2D_tr3iw")
+
+[node name="dice_container" parent="." instance=ExtResource("3_5rqdo")]
+position = Vector2(0, -350)
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
+script = ExtResource("3_6i6fx")
+start_state = NodePath("init")
+
+[node name="init" type="Node" parent="state_machine" node_paths=PackedStringArray("idle")]
+script = ExtResource("4_q30mq")
+idle = NodePath("../idle")
+
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("prepare_move", "prepare_dice")]
+script = ExtResource("5_uh0e2")
+prepare_move = NodePath("../prepare_move")
+prepare_dice = NodePath("../prepare_dice")
+
+[node name="prepare_move" type="Node" parent="state_machine" node_paths=PackedStringArray("move", "spawn_arrows")]
+script = ExtResource("6_3k13u")
+move = NodePath("../move")
+spawn_arrows = NodePath("../spawn_arrows")
+
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle")]
+script = ExtResource("6_poih0")
+idle = NodePath("../idle")
+
+[node name="spawn_arrows" type="Node" parent="state_machine" node_paths=PackedStringArray("awaiting_arrow_click")]
+script = ExtResource("7_ku1ub")
+awaiting_arrow_click = NodePath("../awaiting_arrow_click")
+
+[node name="awaiting_arrow_click" type="Node" parent="state_machine" node_paths=PackedStringArray("move")]
+script = ExtResource("8_3petj")
+move = NodePath("../move")
+
+[node name="prepare_dice" type="Node" parent="state_machine" node_paths=PackedStringArray("await_jump")]
+script = ExtResource("10_no384")
+await_jump = NodePath("../await_jump")
+
+[node name="await_jump" type="Node" parent="state_machine" node_paths=PackedStringArray("idle", "jumping")]
+script = ExtResource("12_mc8oc")
+idle = NodePath("../idle")
+jumping = NodePath("../jumping")
+
+[node name="jumping" type="Node" parent="state_machine" node_paths=PackedStringArray("await_jump")]
+script = ExtResource("13_cunyn")
+await_jump = NodePath("../await_jump")

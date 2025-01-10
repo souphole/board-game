@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhuh4qo4pmb4u"]
+
+[ext_resource type="Texture2D" uid="uid://c4etwgnui3q5j" path="res://assets/neutraltest.png" id="1_igaqp"]
+[ext_resource type="Script" path="res://scenes_scripts/board/space.gd" id="1_xclqm"]
+[ext_resource type="Texture2D" uid="uid://m6poqo5nw6dm" path="res://assets/badtest.png" id="2_ffljn"]
+[ext_resource type="Texture2D" uid="uid://dalqrpfye25rk" path="res://assets/goodtest.png" id="4_vxdm1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_woxnm"]
+radius = 64.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qli2s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ffljn")
+}],
+"loop": true,
+"name": &"bad_test",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_igaqp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_vxdm1")
+}],
+"loop": true,
+"name": &"good_test",
+"speed": 5.0
+}]
+
+[node name="space" type="Area2D"]
+script = ExtResource("1_xclqm")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_woxnm")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(1, 0.625)
+sprite_frames = SubResource("SpriteFrames_qli2s")
