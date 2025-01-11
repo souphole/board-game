@@ -4,4 +4,4 @@ extends DefaultButton
 #this kind of button doesn't do any logic
 #points to another menu for the menu manager to switch to
 
-@export var submenu: Menu
+@export var menu: Menu

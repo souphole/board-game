@@ -24,6 +24,8 @@ var spaces_to_move: int = 0
 
 var path_index: int = 0 #used for getting the next space
 
+var dice_mod: int
+
 signal hit_die
 
 func _ready() -> void:
