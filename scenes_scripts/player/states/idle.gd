@@ -1,6 +1,7 @@
 extends State
 
 @export var prepare_move: State
+
 @export var prepare_dice: State
 
 var reference_state: State
@@ -11,17 +12,9 @@ func enter() -> void:
 	
 	parent.gui.pressed_roll.connect(func(): reference_state = prepare_dice)
 	
-	if parent.spaces_to_move > 0:
-		
-		parent.gui.menu_manager.hide_menu()
-		
-		parent.spaces_to_move -= 1
-		parent.dice_container.set_final_hit_label_value(parent.spaces_to_move)
-		
+	if parent.spaces_to_move > 0: 
 		reference_state = prepare_move
-		
 	else:
-		parent.gui.menu_manager.show_menu()
 		parent.dice_container.remove_final_hit_label()
 
 func process_input(event: InputEvent) -> State:

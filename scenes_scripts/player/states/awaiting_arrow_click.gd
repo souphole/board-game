@@ -21,6 +21,8 @@ func process(delta: float) -> State:
 		
 		if arrow.button.button_pressed:
 			
+			parent.dice_container.set_final_hit_label_value(parent.spaces_to_move)
+			
 			parent.current_space = arrow.reference_space
 			parent.current_path = arrow.reference_space.get_parent()
 			parent.path_index = arrow.reference_space.get_index()

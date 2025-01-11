@@ -7,11 +7,15 @@ extends Control
 
 @export var start_menu: Menu
 
+@export var blank_menu: Menu
+
 @export var animation: AnimationPlayer
 
 var current_menu: Menu
 
-var menu_hidden := false
+var last_menu: Menu
+
+var is_menu_hidden := false
 
 #Initializes the menu machine by injecting dependencies and entering start_menu
 func _ready() -> void:
@@ -32,20 +36,17 @@ func _ready() -> void:
 func change_menu(new_menu: Menu) -> void:
 	if current_menu != null:
 		current_menu.exit()
+		last_menu = current_menu
 	current_menu = new_menu
 	current_menu.enter()
 
 func hide_menu():
-	if not menu_hidden:
-		menu_hidden = true
-		await current_menu.exit()
-		current_menu.visible = false
+	is_menu_hidden = true
+	change_menu(blank_menu)
 
 func show_menu():
-	if menu_hidden:
-		menu_hidden = false
-		await current_menu.enter()
-		current_menu.visible = true
+	is_menu_hidden = false
+	change_menu(last_menu)
 
 func _unhandled_input(event: InputEvent) -> void:
 	var new_menu = current_menu.process_input(event)

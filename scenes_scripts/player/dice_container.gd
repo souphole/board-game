@@ -32,7 +32,7 @@ func _ready() -> void:
 	else:
 		preview_node.visible = false
 		
-func spawn_dice(parent: Player, dice_queue: Array, dice_mod = null) -> void:
+func spawn_dice(parent: Player, dice_queue: Array, dice_mod: int = 0) -> void:
 	
 	finished = false
 	
@@ -41,11 +41,15 @@ func spawn_dice(parent: Player, dice_queue: Array, dice_mod = null) -> void:
 	var hit_labels = []
 	
 	#adds hit_label if a dice_mod argument is passed
-	if dice_mod is int:
+	if dice_mod > 0:
+		
 		hit_values.append(dice_mod)
 		
 		#creates a new label 
 		var dice_mod_hit_label = add_hit_label(dice_mod)
+		
+		dice_mod_hit_label.enter()
+		
 		hit_labels.append(dice_mod_hit_label)
 		
 		#sets the hit_label to the first free position
@@ -82,28 +86,33 @@ func spawn_dice(parent: Player, dice_queue: Array, dice_mod = null) -> void:
 		
 		hit_label_positions.pop_front()
 	
-	#tween all the hit labels to the center
 	
-	for label in hit_labels:
-		tween = create_tween()
-		tween.tween_property(label, "position", Vector2(0, hit_label_height_above_die), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-		label.exit()
+	if len(hit_labels) > 1:
 		
+		#tween all the hit labels to the center
+		for label in hit_labels:
+			tween = create_tween()
+			tween.tween_property(label, "position", Vector2(0, hit_label_height_above_die), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+			label.exit()
+		
+		await tween.finished
 	
-	await tween.finished
-	
-	for label in hit_labels:
-		remove_child(label)
-	hit_labels.clear() #not necessary but IDK feels gross to leave it out
-	
-	final_sum = sum_array(hit_values)
-	hit_values.clear() #ditto
-	
-	final_hit_label = add_hit_label(final_sum)
-	
-	final_hit_label.position = Vector2(0, hit_label_height_above_die)
-	
-	await final_hit_label.enter()
+		for label in hit_labels:
+			remove_child(label)
+		hit_labels.clear() #not necessary but IDK feels gross to leave it out
+		
+		final_sum = sum_array(hit_values)
+		hit_values.clear() #ditto
+		
+		final_hit_label = add_hit_label(final_sum)
+		
+		final_hit_label.position = Vector2(0, hit_label_height_above_die)
+		
+		await final_hit_label.enter()
+		
+	else:
+		
+		final_hit_label = hit_labels[0]
 	
 	finished = true
 

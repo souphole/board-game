@@ -29,8 +29,6 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="boardgame"
 
-[editor]
-
 [gui]
 
 theme/custom="res://main_theme.tres"

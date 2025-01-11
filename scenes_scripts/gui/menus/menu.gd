@@ -5,19 +5,14 @@ extends Control
 
 @export var exit_animation_name: String = "default_exit"
 
-@export var parent_menu: Menu #use if it is a submenu
+@export var parent_menu: Menu
 
 var parent: MenuManager
 var animation: AnimationPlayer
 
 var reference_menu: Menu
 
-var submenu = false #sets true if theres a parent menu
-
 func enter() -> void:
-	
-	if parent_menu != null:
-		submenu = true
 	
 	reference_menu = null
 	
@@ -27,7 +22,7 @@ func enter() -> void:
 			child.parent_menu = self
 	
 		if child is SwitcherButton: #SwitcherButton inherets DefaultButton, so it already has the parent_menu set
-			child.connect("pressed", func(): reference_menu = child.submenu)
+			child.connect("pressed", func(): reference_menu = child.menu)
 	
 	animation.queue(enter_animation_name)
 	
@@ -49,11 +44,7 @@ func exit() -> void:
 func process_input(event: InputEvent) -> Menu:
 	if Input.is_action_just_pressed("ui_cancel") && not animation.is_playing():
 		
-		if submenu:
-			return parent_menu
-			
-		else:
-			return null #TODO add a pause menu
+		return parent_menu #TODO add a pause menu
 	
 	return null
 	

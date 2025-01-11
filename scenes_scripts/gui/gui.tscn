@@ -112,14 +112,16 @@ offset_bottom = 539.0
 grow_vertical = 2
 theme = ExtResource("1_mse6j")
 
-[node name="menu_manager" type="Control" parent="MarginContainer" node_paths=PackedStringArray("gui", "start_menu", "animation")]
+[node name="menu_manager" type="Control" parent="MarginContainer" node_paths=PackedStringArray("gui", "start_menu", "blank_menu", "animation")]
 layout_mode = 2
 script = ExtResource("2_esi6u")
 gui = NodePath("../..")
 start_menu = NodePath("origin_menu")
+blank_menu = NodePath("blank_menu")
 animation = NodePath("../../animation")
 
 [node name="origin_menu" type="Control" parent="MarginContainer/menu_manager"]
+visible = false
 layout_mode = 2
 anchors_preset = 0
 offset_right = 1720.0
@@ -142,12 +144,12 @@ theme = ExtResource("1_mse6j")
 text = "Roll!"
 script = ExtResource("4_4kw5l")
 
-[node name="ItemButton" type="Button" parent="MarginContainer/menu_manager/origin_menu/VBoxContainer" node_paths=PackedStringArray("submenu")]
+[node name="ItemButton" type="Button" parent="MarginContainer/menu_manager/origin_menu/VBoxContainer" node_paths=PackedStringArray("menu")]
 layout_mode = 2
 theme = ExtResource("1_mse6j")
 text = "Item"
 script = ExtResource("2_y8s8o")
-submenu = NodePath("../../../item_menu")
+menu = NodePath("../../../item_menu")
 
 [node name="MapButton" type="Button" parent="MarginContainer/menu_manager/origin_menu/VBoxContainer"]
 layout_mode = 2
@@ -155,12 +157,12 @@ theme = ExtResource("1_mse6j")
 text = "Map"
 script = ExtResource("6_ff7lo")
 
-[node name="DevButton" type="Button" parent="MarginContainer/menu_manager/origin_menu/VBoxContainer" node_paths=PackedStringArray("submenu")]
+[node name="DevButton" type="Button" parent="MarginContainer/menu_manager/origin_menu/VBoxContainer" node_paths=PackedStringArray("menu")]
 layout_mode = 2
 theme = ExtResource("1_mse6j")
 text = "dev"
 script = ExtResource("2_y8s8o")
-submenu = NodePath("../../../dev_menu")
+menu = NodePath("../../../dev_menu")
 
 [node name="item_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("parent_menu")]
 layout_mode = 3
@@ -171,7 +173,6 @@ script = ExtResource("3_4yukx")
 parent_menu = NodePath("../origin_menu")
 
 [node name="dev_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("parent_menu")]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -200,7 +201,11 @@ layout_mode = 2
 min_value = -1.0
 value = -1.0
 
-[node name="queue_button" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("min_spinbox", "max_spinbox", "override_spinbox")]
+[node name="dice_mod" type="SpinBox" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 20000.0
+
+[node name="queue_button" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("min_spinbox", "max_spinbox", "override_spinbox", "dice_mod_spinbox")]
 layout_mode = 2
 theme = ExtResource("1_mse6j")
 text = "queue roll"
@@ -208,6 +213,13 @@ script = ExtResource("7_8lfx8")
 min_spinbox = NodePath("../min")
 max_spinbox = NodePath("../max")
 override_spinbox = NodePath("../override")
+dice_mod_spinbox = NodePath("../dice_mod")
+
+[node name="blank_menu" type="Control" parent="MarginContainer/menu_manager"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_4yukx")
 
 [node name="animation" type="AnimationPlayer" parent="."]
 libraries = {
