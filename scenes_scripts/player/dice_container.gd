@@ -11,7 +11,9 @@ extends Node2D
 
 @onready var hit_label = preload("res://scenes_scripts/gui/label/hit_label.tscn")
 
-@onready var die_node = preload("res://scenes_scripts/die/die.tscn")
+@onready var die_normal = preload("res://scenes_scripts/die/die.tscn")
+
+@onready var die_aurora = preload("res://scenes_scripts/die/die_aurora.tscn")
 
 var tween: Tween
 
@@ -41,7 +43,7 @@ func spawn_dice(parent: Player, dice_queue: Array, dice_mod: int = 0) -> void:
 	var hit_labels = []
 	
 	#adds hit_label if a dice_mod argument is passed
-	if dice_mod > 0:
+	if dice_mod != 0:
 		
 		hit_values.append(dice_mod)
 		
@@ -120,7 +122,8 @@ func get_final_hit_label_value() -> int: #used for counting down every move
 	return final_hit_label.value
 
 func set_final_hit_label_value(value: int) -> void: #used for counting down every move
-	final_hit_label.change_value(value)
+	if final_hit_label:
+		final_hit_label.change_value(value)
 	
 func remove_final_hit_label() -> void:
 	if final_hit_label != null:
@@ -131,7 +134,7 @@ func calculate_hit_label_positions(dice_queue, dice_mod) -> Array:
 	var label_positions = []
 	var label_count = 0
 	
-	if dice_mod != null:
+	if dice_mod != 0:
 		label_count = len(dice_queue) + 1
 	else:	
 		label_count = len(dice_queue) 
@@ -151,7 +154,15 @@ func add_hit_label(num: int) -> HitLabel:
 	return new_hit_label
 
 func spawn_active_die(die_properties: Dictionary) -> Die:
-	var new_die: Die = die_node.instantiate()
+	
+	var new_die: Die = die_normal.instantiate()
+	
+	match die_properties["die_type"]:
+		"normal":
+			new_die = die_normal.instantiate()
+		"aurora":
+			new_die = die_aurora.instantiate()
+			
 	new_die.min = die_properties["min"]
 	new_die.max = die_properties["max"]
 	new_die.override = die_properties["override"]

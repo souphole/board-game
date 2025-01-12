@@ -1,5 +1,6 @@
 extends DefaultButton
 
+@export var die_type: LineEdit
 @export var min_spinbox: SpinBox
 @export var max_spinbox: SpinBox
 @export var override_spinbox: SpinBox
@@ -10,7 +11,7 @@ func _pressed() -> void:
 	if dice_queue == null:
 		dice_queue = []
 		
-	dice_queue.append({"min": min_spinbox.value, "max": max_spinbox.value, "override": override_spinbox.value})
+	dice_queue.append({"die_type": die_type.text, "min": min_spinbox.value, "max": max_spinbox.value, "override": override_spinbox.value})
 	
 	print(dice_queue, " " + str(dice_mod_spinbox.value))
 	

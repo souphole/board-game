@@ -9,7 +9,16 @@
 
 [node name="main" type="Node2D"]
 
+[node name="GUI" parent="." instance=ExtResource("6_7vpvk")]
+layer = 0
+
+[node name="Player" parent="." node_paths=PackedStringArray("gui", "path_container", "starting_space") instance=ExtResource("4_jjxjn")]
+gui = NodePath("../GUI")
+path_container = NodePath("../PathContainer")
+starting_space = NodePath("../PathContainer/SpaceContainer/0")
+
 [node name="PathContainer" parent="." instance=ExtResource("1_t7qfx")]
+z_index = -1
 position = Vector2(-243, -63)
 
 [node name="SpaceContainer" parent="PathContainer" instance=ExtResource("2_esres")]
@@ -142,17 +151,9 @@ position = Vector2(-276, -3739)
 position = Vector2(-256, -4025)
 branch_nodes = [NodePath("../../SpaceContainer/20")]
 
-[node name="Player" parent="." node_paths=PackedStringArray("gui", "path_container", "starting_space") instance=ExtResource("4_jjxjn")]
-gui = NodePath("../GUI")
-path_container = NodePath("../PathContainer")
-starting_space = NodePath("../PathContainer/SpaceContainer/0")
-
 [node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("5_iftlw")
 player = NodePath("../Player")
-
-[node name="GUI" parent="." instance=ExtResource("6_7vpvk")]
-layer = -1
