@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cov744d3wgiq6"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cov744d3wgiq6"]
 
 [ext_resource type="FontFile" uid="uid://bokjaj14oimx6" path="res://assets/BowlbyOne-Regular.ttf" id="1_dtdna"]
 
@@ -11,6 +11,14 @@ expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbw0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2rsl"]
+bg_color = Color(0.36, 0.36, 0.36, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vp7pv"]
+bg_color = Color(0.14, 0.14, 0.14, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnjtj"]
 bg_color = Color(0.22, 0.22, 0.22, 1)
@@ -30,6 +38,14 @@ HitLabel/base_type = &"Label"
 HitLabel/colors/font_color = Color(1, 0.966667, 0, 1)
 HitLabel/constants/outline_size = 30
 HitLabel/font_sizes/font_size = 80
+ItemButton/base_type = &"Button"
+ItemButton/constants/icon_max_width = 75
+ItemButton/styles/hover = SubResource("StyleBoxFlat_jbw0e")
+ItemButton/styles/normal = SubResource("StyleBoxFlat_v2rsl")
+ItemButton/styles/pressed = SubResource("StyleBoxFlat_vp7pv")
+ItemGrid/base_type = &"GridContainer"
+ItemGrid/constants/h_separation = 4
+ItemGrid/constants/v_separation = 4
 Label/font_sizes/font_size = 60
 Label/fonts/font = ExtResource("1_dtdna")
 MarginContainer/constants/margin_bottom = 100

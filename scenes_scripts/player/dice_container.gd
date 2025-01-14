@@ -158,8 +158,6 @@ func spawn_active_die(die_properties: Dictionary) -> Die:
 	var new_die: Die = die_normal.instantiate()
 	
 	match die_properties["die_type"]:
-		"normal":
-			new_die = die_normal.instantiate()
 		"aurora":
 			new_die = die_aurora.instantiate()
 			

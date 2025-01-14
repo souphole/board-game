@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://enleak7pdcxk"]
+[gd_scene load_steps=15 format=3 uid="uid://enleak7pdcxk"]
 
 [ext_resource type="Script" path="res://scenes_scripts/gui/gui.gd" id="1_4xtbr"]
 [ext_resource type="Theme" uid="uid://cov744d3wgiq6" path="res://main_theme.tres" id="1_mse6j"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/roll_button.gd" id="4_4kw5l"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/map_button.gd" id="6_ff7lo"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/dev_queue_roll_button.gd" id="7_8lfx8"]
+[ext_resource type="Texture2D" uid="uid://dbe8qbosobebh" path="res://assets/aurora.png" id="8_dx33f"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_yugbn"]
 
 [sub_resource type="Animation" id="Animation_0ika6"]
 length = 0.001
@@ -172,7 +175,120 @@ offset_bottom = 40.0
 script = ExtResource("3_4yukx")
 parent_menu = NodePath("../origin_menu")
 
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/menu_manager/item_menu"]
+custom_minimum_size = Vector2(0, 126.175)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+horizontal_scroll_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/menu_manager/item_menu/ScrollContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 15
+columns = 3
+
+[node name="Button" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yugbn")
+icon = ExtResource("8_dx33f")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button2" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yugbn")
+icon = ExtResource("8_dx33f")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button3" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yugbn")
+icon = ExtResource("8_dx33f")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button4" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yugbn")
+icon = ExtResource("8_dx33f")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button5" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yugbn")
+icon = ExtResource("8_dx33f")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button6" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yugbn")
+icon = ExtResource("8_dx33f")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button7" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yugbn")
+icon = ExtResource("8_dx33f")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button8" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yugbn")
+icon = ExtResource("8_dx33f")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button9" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_yugbn")
+icon = ExtResource("8_dx33f")
+icon_alignment = 1
+expand_icon = true
+
 [node name="dev_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("parent_menu")]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
