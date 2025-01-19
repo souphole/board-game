@@ -176,10 +176,10 @@ script = ExtResource("3_4yukx")
 parent_menu = NodePath("../origin_menu")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/menu_manager/item_menu"]
-custom_minimum_size = Vector2(0, 126.175)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
+offset_top = 20.0
+offset_right = 298.0
+offset_bottom = 154.0
 horizontal_scroll_mode = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/menu_manager/item_menu/ScrollContainer"]
@@ -288,7 +288,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="dev_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("parent_menu")]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -330,7 +329,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 20000.0
 
-[node name="queue_button" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("die_type", "min_spinbox", "max_spinbox", "override_spinbox", "dice_mod_spinbox")]
+[node name="add_roll_die" type="CheckButton" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="queue_button" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("die_type", "min_spinbox", "max_spinbox", "override_spinbox", "dice_mod_spinbox", "add_roll_die_check")]
 layout_mode = 2
 theme = ExtResource("1_mse6j")
 text = "queue roll"
@@ -340,6 +343,7 @@ min_spinbox = NodePath("../min")
 max_spinbox = NodePath("../max")
 override_spinbox = NodePath("../override")
 dice_mod_spinbox = NodePath("../dice_mod")
+add_roll_die_check = NodePath("../add_roll_die")
 
 [node name="blank_menu" type="Control" parent="MarginContainer/menu_manager"]
 anchors_preset = 0

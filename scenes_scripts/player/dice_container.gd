@@ -11,10 +11,6 @@ extends Node2D
 
 @onready var hit_label = preload("res://scenes_scripts/gui/label/hit_label.tscn")
 
-@onready var die_normal = preload("res://scenes_scripts/die/die.tscn")
-
-@onready var die_aurora = preload("res://scenes_scripts/die/die_aurora.tscn")
-
 var tween: Tween
 
 var active_die: Die
@@ -106,6 +102,10 @@ func spawn_dice(parent: Player, dice_queue: Array, dice_mod: int = 0) -> void:
 		final_sum = sum_array(hit_values)
 		hit_values.clear() #ditto
 		
+		#check if the sum is less than zero. used since dice_mod might make the final sum a negative value.
+		if final_sum < 0:
+			final_sum = 0
+		
 		final_hit_label = add_hit_label(final_sum)
 		
 		final_hit_label.position = Vector2(0, hit_label_height_above_die)
@@ -153,17 +153,7 @@ func add_hit_label(num: int) -> HitLabel:
 	add_child(new_hit_label)
 	return new_hit_label
 
-func spawn_active_die(die_properties: Dictionary) -> Die:
-	
-	var new_die: Die = die_normal.instantiate()
-	
-	match die_properties["die_type"]:
-		"aurora":
-			new_die = die_aurora.instantiate()
-			
-	new_die.min = die_properties["min"]
-	new_die.max = die_properties["max"]
-	new_die.override = die_properties["override"]
+func spawn_active_die(new_die: Die):
 	add_child(new_die)
 	return new_die
 

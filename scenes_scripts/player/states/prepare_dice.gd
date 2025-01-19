@@ -5,13 +5,13 @@ extends State
 func enter() -> void:
 	super()
 	
-	var dice_queue = global_dict.get_data("dice_queue")
-	var dice_mod = global_dict.get_data("dice_mod")
+	var dice_queue = global_values.dice_queue
+	var dice_mod = global_values.dice_mod
 	
 	parent.dice_container.spawn_dice(parent, dice_queue, dice_mod)
 	
-	global_dict.store_data("dice_queue", [])
-	global_dict.store_data("dice_mod", null)
+	global_values.dice_queue = []
+	global_values.dice_mod = 0
 
 func process(delta: float) -> State:
 	return await_jump

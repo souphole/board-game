@@ -19,7 +19,10 @@ func enter() -> void:
 	
 	tween.finished.connect(func(): reference_state = idle) #avoids having to use await and therefore making process async
 	
-	tween.tween_property(parent, "global_position", parent.current_space.global_position, 0.25)
+	if parent.spaces_to_move != 0:
+		tween.tween_property(parent, "global_position", parent.current_space.global_position, 0.25)
+	else:
+		tween.tween_property(parent, "global_position", parent.current_space.global_position, 0.25) #TODO customize later
 
 func process(delta: float) -> State:
 	return reference_state

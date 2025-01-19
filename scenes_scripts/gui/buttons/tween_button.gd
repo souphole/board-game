@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 			tween.kill()
 		# And create a new one
 		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel()
-		# That tweens some properties of our tween stylebox to the target stylebox
+		# That tweens some properties of our tween stylebox to the target stylebox@export var add_roll_die_check: CheckButton
 		# depending on the current state
 		var target = styleboxes[current_state] as StyleBoxFlat
 		tween.tween_property(tween_stylebox, "bg_color", target.bg_color, 0.2)
