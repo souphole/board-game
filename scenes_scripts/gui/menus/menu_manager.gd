@@ -45,7 +45,6 @@ func hide_menu():
 	change_menu(blank_menu)
 
 func show_menu():
-	print("yep")
 	is_menu_hidden = false
 	change_menu(last_menu)
 

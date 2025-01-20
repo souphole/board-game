@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://enleak7pdcxk"]
+[gd_scene load_steps=17 format=3 uid="uid://enleak7pdcxk"]
 
 [ext_resource type="Script" path="res://scenes_scripts/gui/gui.gd" id="1_4xtbr"]
 [ext_resource type="Theme" uid="uid://cov744d3wgiq6" path="res://main_theme.tres" id="1_mse6j"]
@@ -8,9 +8,17 @@
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/roll_button.gd" id="4_4kw5l"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/map_button.gd" id="6_ff7lo"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/dev_queue_roll_button.gd" id="7_8lfx8"]
-[ext_resource type="Texture2D" uid="uid://dbe8qbosobebh" path="res://assets/aurora.png" id="8_dx33f"]
+[ext_resource type="Script" path="res://scenes_scripts/gui/menus/item_menu.gd" id="8_1dkvu"]
+[ext_resource type="Script" path="res://scenes_scripts/gui/buttons/item_button.gd" id="8_x1mn3"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_yugbn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yq4y"]
+bg_color = Color(0.18, 0.18, 0.18, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_2068t"]
 
 [sub_resource type="Animation" id="Animation_0ika6"]
 length = 0.001
@@ -136,7 +144,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 offset_top = 257.0
 offset_right = 200.0
-offset_bottom = 621.0
+offset_bottom = 633.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 alignment = 1
@@ -167,127 +175,71 @@ text = "dev"
 script = ExtResource("2_y8s8o")
 menu = NodePath("../../../dev_menu")
 
-[node name="item_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("parent_menu")]
+[node name="item_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("item_buttons", "parent_menu")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_4yukx")
+script = ExtResource("8_1dkvu")
+item_buttons = [NodePath("PanelContainer/MarginContainer/CenterContainer/item_buttons/0"), NodePath("PanelContainer/MarginContainer/CenterContainer/item_buttons/1"), NodePath("PanelContainer/MarginContainer/CenterContainer/item_buttons/2")]
 parent_menu = NodePath("../origin_menu")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/menu_manager/item_menu"]
-layout_mode = 2
-offset_top = 20.0
-offset_right = 298.0
-offset_bottom = 154.0
-horizontal_scroll_mode = 0
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/menu_manager/item_menu"]
+layout_mode = 0
+offset_top = 256.0
+offset_right = 386.0
+offset_bottom = 713.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2yq4y")
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/menu_manager/item_menu/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/menu_manager/item_menu/PanelContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 65
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/menu_manager/item_menu/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+size_flags_vertical = 0
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer"]
+[node name="item_buttons" type="HBoxContainer" parent="MarginContainer/menu_manager/item_menu/PanelContainer/MarginContainer/CenterContainer"]
 layout_mode = 2
-theme_override_constants/h_separation = 15
-columns = 3
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 15
 
-[node name="Button" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(80, 80)
+[node name="0" type="Button" parent="MarginContainer/menu_manager/item_menu/PanelContainer/MarginContainer/CenterContainer/item_buttons"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+theme = ExtResource("1_mse6j")
 theme_type_variation = &"ItemButton"
 toggle_mode = true
-button_group = SubResource("ButtonGroup_yugbn")
-icon = ExtResource("8_dx33f")
-icon_alignment = 1
+button_group = SubResource("ButtonGroup_2068t")
 expand_icon = true
+script = ExtResource("8_x1mn3")
 
-[node name="Button2" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(80, 80)
+[node name="1" type="Button" parent="MarginContainer/menu_manager/item_menu/PanelContainer/MarginContainer/CenterContainer/item_buttons"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+theme = ExtResource("1_mse6j")
 theme_type_variation = &"ItemButton"
 toggle_mode = true
-button_group = SubResource("ButtonGroup_yugbn")
-icon = ExtResource("8_dx33f")
-icon_alignment = 1
+button_group = SubResource("ButtonGroup_2068t")
 expand_icon = true
+script = ExtResource("8_x1mn3")
 
-[node name="Button3" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(80, 80)
+[node name="2" type="Button" parent="MarginContainer/menu_manager/item_menu/PanelContainer/MarginContainer/CenterContainer/item_buttons"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+theme = ExtResource("1_mse6j")
 theme_type_variation = &"ItemButton"
 toggle_mode = true
-button_group = SubResource("ButtonGroup_yugbn")
-icon = ExtResource("8_dx33f")
-icon_alignment = 1
+button_group = SubResource("ButtonGroup_2068t")
 expand_icon = true
-
-[node name="Button4" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-theme_type_variation = &"ItemButton"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yugbn")
-icon = ExtResource("8_dx33f")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Button5" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-theme_type_variation = &"ItemButton"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yugbn")
-icon = ExtResource("8_dx33f")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Button6" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-theme_type_variation = &"ItemButton"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yugbn")
-icon = ExtResource("8_dx33f")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Button7" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-theme_type_variation = &"ItemButton"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yugbn")
-icon = ExtResource("8_dx33f")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Button8" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-theme_type_variation = &"ItemButton"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yugbn")
-icon = ExtResource("8_dx33f")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Button9" type="Button" parent="MarginContainer/menu_manager/item_menu/ScrollContainer/PanelContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-theme_type_variation = &"ItemButton"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_yugbn")
-icon = ExtResource("8_dx33f")
-icon_alignment = 1
-expand_icon = true
+script = ExtResource("8_x1mn3")
 
 [node name="dev_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("parent_menu")]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

@@ -17,6 +17,7 @@ func _ready() -> void:
 	styleboxes[BaseButton.DRAW_HOVER] = get_theme_stylebox('hover').duplicate()
 	styleboxes[BaseButton.DRAW_PRESSED] = get_theme_stylebox('pressed').duplicate()
 	styleboxes[BaseButton.DRAW_HOVER_PRESSED] = get_theme_stylebox('pressed').duplicate()
+	styleboxes[BaseButton.DRAW_DISABLED] = get_theme_stylebox('disabled').duplicate()
 	# Override all the other styleboxes with our tween stylebox
 	add_theme_stylebox_override('normal', tween_stylebox)
 	add_theme_stylebox_override('hover', tween_stylebox)

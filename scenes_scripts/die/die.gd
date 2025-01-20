@@ -1,4 +1,4 @@
-@icon("res://assets/aurora.png")
+@icon("res://assets/diceicon.png")
 
 class_name Die
 extends Area2D

@@ -15,7 +15,11 @@ expand_margin_bottom = 5.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbw0e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2rsl"]
-bg_color = Color(0.36, 0.36, 0.36, 1)
+bg_color = Color(0.12, 0.12, 0.12, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vp7pv"]
 bg_color = Color(0.14, 0.14, 0.14, 1)
