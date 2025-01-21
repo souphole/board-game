@@ -22,9 +22,9 @@ func _pressed() -> void:
 	
 	match die_type.text:
 		"aurora":
-			new_die = global_values.die_aurora.instantiate()
+			new_die = dice.die_aurora.instantiate()
 		_:
-			new_die = global_values.die_normal.instantiate()
+			new_die = dice.die_normal.instantiate()
 	
 	new_die.min = min_spinbox.value
 	new_die.max = max_spinbox.value

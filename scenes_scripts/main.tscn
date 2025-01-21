@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://wwvo6b54uoe"]
+[gd_scene load_steps=8 format=3 uid="uid://wwvo6b54uoe"]
 
 [ext_resource type="PackedScene" uid="uid://hkqi7dcflgph" path="res://scenes_scripts/board/path_container.tscn" id="1_t7qfx"]
 [ext_resource type="PackedScene" uid="uid://dixchkd0i0xh6" path="res://scenes_scripts/board/space_container.tscn" id="2_esres"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ha5mkxm4kxeg" path="res://scenes_scripts/player/player.tscn" id="4_jjxjn"]
 [ext_resource type="Script" path="res://scenes_scripts/camera.gd" id="5_iftlw"]
 [ext_resource type="PackedScene" uid="uid://enleak7pdcxk" path="res://scenes_scripts/gui/gui.tscn" id="6_7vpvk"]
+[ext_resource type="PackedScene" uid="uid://bxwjxyd1joxqh" path="res://scenes_scripts/items/items.tscn" id="7_fscay"]
 
 [node name="main" type="Node2D"]
 
@@ -157,3 +158,5 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("5_iftlw")
 player = NodePath("../Player")
+
+[node name="items" parent="." instance=ExtResource("7_fscay")]

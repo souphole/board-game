@@ -1,8 +1,11 @@
+class_name ItemTest
 extends Item
 
 func _ready() -> void:
-	item_name = "test"
+	item_name = "Test"
 	
-	item_description = "test"
+	item_description = "Test"
 	
-	item_image = preload("res://assets/test.png")
+	item_image = preload("res://assets/test/test.png")
+
+	item_lifetime = 1

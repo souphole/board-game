@@ -10,4 +10,3 @@ func _ready() -> void:
 	if not item:
 		disabled = true
 		print(disabled)
-	

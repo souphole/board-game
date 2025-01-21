@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://enleak7pdcxk"]
+[gd_scene load_steps=18 format=3 uid="uid://enleak7pdcxk"]
 
 [ext_resource type="Script" path="res://scenes_scripts/gui/gui.gd" id="1_4xtbr"]
 [ext_resource type="Theme" uid="uid://cov744d3wgiq6" path="res://main_theme.tres" id="1_mse6j"]
@@ -7,9 +7,10 @@
 [ext_resource type="Script" path="res://scenes_scripts/gui/menus/menu.gd" id="3_4yukx"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/roll_button.gd" id="4_4kw5l"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/map_button.gd" id="6_ff7lo"]
-[ext_resource type="Script" path="res://scenes_scripts/gui/buttons/dev_queue_roll_button.gd" id="7_8lfx8"]
+[ext_resource type="Script" path="res://scenes_scripts/gui/dev/dev_queue_roll_button.gd" id="7_8lfx8"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/menus/item_menu.gd" id="8_1dkvu"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/item_button.gd" id="8_x1mn3"]
+[ext_resource type="Script" path="res://scenes_scripts/gui/dev/dev_add_item.gd" id="11_2lajh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yq4y"]
 bg_color = Color(0.18, 0.18, 0.18, 1)
@@ -175,13 +176,14 @@ text = "dev"
 script = ExtResource("2_y8s8o")
 menu = NodePath("../../../dev_menu")
 
-[node name="item_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("item_buttons", "parent_menu")]
+[node name="item_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("item_slots", "parent_menu")]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_1dkvu")
-item_buttons = [NodePath("PanelContainer/MarginContainer/CenterContainer/item_buttons/0"), NodePath("PanelContainer/MarginContainer/CenterContainer/item_buttons/1"), NodePath("PanelContainer/MarginContainer/CenterContainer/item_buttons/2")]
+item_slots = [NodePath("PanelContainer/MarginContainer/CenterContainer/item_buttons/0"), NodePath("PanelContainer/MarginContainer/CenterContainer/item_buttons/1"), NodePath("PanelContainer/MarginContainer/CenterContainer/item_buttons/2")]
 parent_menu = NodePath("../origin_menu")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/menu_manager/item_menu"]
@@ -239,7 +241,6 @@ expand_icon = true
 script = ExtResource("8_x1mn3")
 
 [node name="dev_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("parent_menu")]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -296,6 +297,20 @@ max_spinbox = NodePath("../max")
 override_spinbox = NodePath("../override")
 dice_mod_spinbox = NodePath("../dice_mod")
 add_roll_die_check = NodePath("../add_roll_die")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "item_test"
+
+[node name="add_item" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_mse6j")
+text = "add item"
+script = ExtResource("11_2lajh")
 
 [node name="blank_menu" type="Control" parent="MarginContainer/menu_manager"]
 anchors_preset = 0
