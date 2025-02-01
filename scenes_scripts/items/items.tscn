@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://scenes_scripts/items/item_test2.gd" id="3_dqrwn"]
 
 [node name="items" type="Node"]
-metadata/note = "literally just contains all the items to instance"
 
 [node name="item" type="Node" parent="."]
 script = ExtResource("1_wii0x")

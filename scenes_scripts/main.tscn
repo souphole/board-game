@@ -10,8 +10,9 @@
 
 [node name="main" type="Node2D"]
 
-[node name="GUI" parent="." instance=ExtResource("6_7vpvk")]
+[node name="GUI" parent="." node_paths=PackedStringArray("items") instance=ExtResource("6_7vpvk")]
 layer = 0
+items = NodePath("../items")
 
 [node name="Player" parent="." node_paths=PackedStringArray("gui", "path_container", "starting_space") instance=ExtResource("4_jjxjn")]
 gui = NodePath("../GUI")
@@ -32,9 +33,11 @@ position = Vector2(82, 430)
 
 [node name="2" parent="PathContainer/SpaceContainer" instance=ExtResource("2_nehqj")]
 position = Vector2(-29, 160)
+type = "default_item"
 
 [node name="3" parent="PathContainer/SpaceContainer" instance=ExtResource("2_nehqj")]
 position = Vector2(-36, -129)
+type = "default_item"
 
 [node name="4" parent="PathContainer/SpaceContainer" instance=ExtResource("2_nehqj")]
 position = Vector2(92, -385)

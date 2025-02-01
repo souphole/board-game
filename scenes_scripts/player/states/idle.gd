@@ -4,6 +4,8 @@ extends State
 
 @export var prepare_dice: State
 
+@export var default_item: State
+
 var reference_state: State
 
 func enter() -> void:
@@ -24,6 +26,8 @@ func enter() -> void:
 		if parent.gui.menu_manager.is_menu_hidden:
 			global_values.roll_enabled = true
 			parent.gui.menu_manager.show_menu()
+			
+		check_space()
 
 func process_input(event: InputEvent) -> State:
 	#dev actions and such. good for testing
@@ -32,6 +36,10 @@ func process_input(event: InputEvent) -> State:
 			return prepare_move
 	
 	return null
+	
+func check_space():
+	if parent.current_space.type == "default_item":
+			reference_state = default_item
 	
 func process(delta: float) -> State:
 	return reference_state

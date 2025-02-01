@@ -306,11 +306,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "item_test"
 
-[node name="add_item" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer2"]
+[node name="add_item" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("root_parent", "line_edit")]
 layout_mode = 2
 theme = ExtResource("1_mse6j")
 text = "add item"
 script = ExtResource("11_2lajh")
+root_parent = NodePath("../../../../../..")
+line_edit = NodePath("../LineEdit")
 
 [node name="blank_menu" type="Control" parent="MarginContainer/menu_manager"]
 anchors_preset = 0
