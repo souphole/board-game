@@ -10,15 +10,16 @@ extends State
 
 var reference_state: State
 
-func enter() -> void:
-	super()
-	reference_state = null
-	
+func init() -> void:
 	parent.gui.pressed_roll.connect(func(): 
 		reference_state = prepare_dice
 		global_values.roll_enabled = false
 		parent.gui.menu_manager.hide_menu()
 	)
+
+func enter() -> void:
+	super()
+	reference_state = null
 	
 	if parent.spaces_to_move > 0: 
 		reference_state = prepare_move
@@ -29,6 +30,9 @@ func enter() -> void:
 			global_values.roll_enabled = true
 			parent.gui.menu_manager.show_menu()
 			
+		inventory.update_lifespans()
+		print(inventory.used_items)
+		
 		check_space()
 
 func process_input(event: InputEvent) -> State:

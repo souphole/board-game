@@ -1,9 +1,9 @@
 class_name Inventory
 extends Node
 
-var inventory_array := [] #for items in the actual inventory
+var inventory_array: Array[Item] #for items in the actual inventory
 
-var used_items := []
+var used_items: Array[Item]
 
 var hold := [] #for items on "hold" i.e. they don't have room and a decision hasn't been made whether they should be discarded or not
 
@@ -28,3 +28,12 @@ func use_item(index: int):
 func drop_item(index: int):
 	inventory_array.pop_at(index)
 	inventory_changed.emit()
+
+func update_lifespans():
+	for item_index in range(len(used_items)):
+		var item = used_items[item_index]
+		
+		item.item_lifetime -= 1
+		
+		if item.item_lifetime <= 0:
+			used_items.pop_at(item_index)

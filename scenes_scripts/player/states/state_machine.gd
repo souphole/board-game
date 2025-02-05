@@ -12,6 +12,7 @@ func init(parent: Player) -> void:
 	for child in get_all_children(self):
 		if child is State:
 			child.parent = parent
+			child.init()
 	change_state(start_state)
 
 #changes state by calling exit() on old state and enter() on new state

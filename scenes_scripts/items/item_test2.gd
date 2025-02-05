@@ -8,4 +8,4 @@ func _init() -> void:
 	
 	item_image = preload("res://assets/test/test2.png")
 	
-	item_lifetime = 1
+	item_lifetime = 2
