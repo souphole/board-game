@@ -1,7 +1,7 @@
 class_name ItemTest2
 extends Item
 
-func _ready() -> void:
+func _init() -> void:
 	item_name = "Test2"
 	
 	item_description = "Test2"

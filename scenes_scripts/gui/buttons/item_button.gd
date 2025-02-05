@@ -9,4 +9,13 @@ func _ready() -> void:
 	
 	if not item:
 		disabled = true
-		print(disabled)
+		
+func update_image() -> void:
+	button_pressed = false
+	
+	if item:
+		icon = item.item_image
+		disabled = false
+	else:
+		icon = null
+		disabled = true

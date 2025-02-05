@@ -15,14 +15,14 @@ expand_margin_bottom = 5.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbw0e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2rsl"]
-bg_color = Color(0.12, 0.12, 0.12, 1)
+bg_color = Color(0.09, 0.09, 0.09, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vp7pv"]
-bg_color = Color(0.14, 0.14, 0.14, 1)
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnjtj"]
 bg_color = Color(0.22, 0.22, 0.22, 1)
@@ -38,6 +38,9 @@ ArrowButton/styles/normal = SubResource("StyleBoxEmpty_faaii")
 Button/font_sizes/font_size = 50
 Button/fonts/font = ExtResource("1_dtdna")
 Button/styles/hover = SubResource("StyleBoxFlat_4u54y")
+DescriptionLabel/base_type = &"Label"
+DescriptionLabel/constants/line_spacing = -2
+DescriptionLabel/font_sizes/font_size = 22
 HitLabel/base_type = &"Label"
 HitLabel/colors/font_color = Color(1, 0.966667, 0, 1)
 HitLabel/constants/outline_size = 30

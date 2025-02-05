@@ -1,9 +1,11 @@
 extends State
 
+@export_group("Player Action")
 @export var prepare_move: State
 
 @export var prepare_dice: State
 
+@export_group("Spaces")
 @export var default_item: State
 
 var reference_state: State

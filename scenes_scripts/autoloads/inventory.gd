@@ -22,5 +22,9 @@ func add_item(item: Item):
 	
 func use_item(index: int):
 	var used_item = inventory_array.pop_at(index)
+	used_items.append(used_item)
+	inventory_changed.emit()
 	
+func drop_item(index: int):
+	inventory_array.pop_at(index)
 	inventory_changed.emit()
