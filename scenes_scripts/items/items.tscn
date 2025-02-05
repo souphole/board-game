@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxwjxyd1joxqh"]
+
+[ext_resource type="Script" path="res://scenes_scripts/items/item.gd" id="1_wii0x"]
+[ext_resource type="Script" path="res://scenes_scripts/items/item_test.gd" id="2_lltus"]
+[ext_resource type="Script" path="res://scenes_scripts/items/item_test2.gd" id="3_dqrwn"]
+
+[node name="items" type="Node"]
+
+[node name="item" type="Node" parent="."]
+script = ExtResource("1_wii0x")
+
+[node name="item_test" type="Node" parent="."]
+script = ExtResource("2_lltus")
+
+[node name="item_test2" type="Node" parent="."]
+script = ExtResource("3_dqrwn")

@@ -23,7 +23,6 @@ func process(delta: float) -> State:
 	return awaiting_arrow_click
 
 func spawn_arrow(pos1: Vector2, pos2: Vector2, reference_space) -> void:
-	
 	var arrow = arrow_scene.instantiate()
 	
 	arrow.z_index = 2

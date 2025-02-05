@@ -9,8 +9,10 @@ var current_state: State
 
 #Initializes the state machine by giving each state the reference to the parent as well as entering start_state
 func init(parent: Player) -> void:
-	for child in get_children():
-		child.parent = parent
+	for child in get_all_children(self):
+		if child is State:
+			child.parent = parent
+			child.init()
 	change_state(start_state)
 
 #changes state by calling exit() on old state and enter() on new state
@@ -34,3 +36,15 @@ func process(delta: float) -> void:
 	var new_state = current_state.process(delta)
 	if new_state != null:
 		change_state(new_state)
+		
+#gets children recursively
+func get_all_children(input_node: Node) -> Array:
+	var children: Array
+	
+	for child in input_node.get_children():
+		children.append(child)
+	
+		for recursive_child in get_all_children(child):
+			children.append(recursive_child)
+	
+	return children

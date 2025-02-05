@@ -11,8 +11,6 @@ extends Node2D
 
 @onready var hit_label = preload("res://scenes_scripts/gui/label/hit_label.tscn")
 
-@onready var die_node = preload("res://scenes_scripts/die/die.tscn")
-
 var tween: Tween
 
 var active_die: Die
@@ -41,7 +39,7 @@ func spawn_dice(parent: Player, dice_queue: Array, dice_mod: int = 0) -> void:
 	var hit_labels = []
 	
 	#adds hit_label if a dice_mod argument is passed
-	if dice_mod > 0:
+	if dice_mod != 0:
 		
 		hit_values.append(dice_mod)
 		
@@ -104,6 +102,10 @@ func spawn_dice(parent: Player, dice_queue: Array, dice_mod: int = 0) -> void:
 		final_sum = sum_array(hit_values)
 		hit_values.clear() #ditto
 		
+		#check if the sum is less than zero. used since dice_mod might make the final sum a negative value.
+		if final_sum < 0:
+			final_sum = 0
+		
 		final_hit_label = add_hit_label(final_sum)
 		
 		final_hit_label.position = Vector2(0, hit_label_height_above_die)
@@ -120,7 +122,8 @@ func get_final_hit_label_value() -> int: #used for counting down every move
 	return final_hit_label.value
 
 func set_final_hit_label_value(value: int) -> void: #used for counting down every move
-	final_hit_label.change_value(value)
+	if final_hit_label:
+		final_hit_label.change_value(value)
 	
 func remove_final_hit_label() -> void:
 	if final_hit_label != null:
@@ -131,7 +134,7 @@ func calculate_hit_label_positions(dice_queue, dice_mod) -> Array:
 	var label_positions = []
 	var label_count = 0
 	
-	if dice_mod != null:
+	if dice_mod != 0:
 		label_count = len(dice_queue) + 1
 	else:	
 		label_count = len(dice_queue) 
@@ -150,11 +153,7 @@ func add_hit_label(num: int) -> HitLabel:
 	add_child(new_hit_label)
 	return new_hit_label
 
-func spawn_active_die(die_properties: Dictionary) -> Die:
-	var new_die: Die = die_node.instantiate()
-	new_die.min = die_properties["min"]
-	new_die.max = die_properties["max"]
-	new_die.override = die_properties["override"]
+func spawn_active_die(new_die: Die):
 	add_child(new_die)
 	return new_die
 

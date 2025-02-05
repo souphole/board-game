@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://enleak7pdcxk"]
+[gd_scene load_steps=19 format=3 uid="uid://enleak7pdcxk"]
 
 [ext_resource type="Script" path="res://scenes_scripts/gui/gui.gd" id="1_4xtbr"]
 [ext_resource type="Theme" uid="uid://cov744d3wgiq6" path="res://main_theme.tres" id="1_mse6j"]
@@ -7,7 +7,21 @@
 [ext_resource type="Script" path="res://scenes_scripts/gui/menus/menu.gd" id="3_4yukx"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/roll_button.gd" id="4_4kw5l"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/map_button.gd" id="6_ff7lo"]
-[ext_resource type="Script" path="res://scenes_scripts/gui/buttons/dev_queue_roll_button.gd" id="7_8lfx8"]
+[ext_resource type="Script" path="res://scenes_scripts/gui/dev/dev_queue_roll_button.gd" id="7_8lfx8"]
+[ext_resource type="Script" path="res://scenes_scripts/gui/menus/item_menu.gd" id="8_1dkvu"]
+[ext_resource type="Script" path="res://scenes_scripts/gui/buttons/item_button.gd" id="8_x1mn3"]
+[ext_resource type="Script" path="res://scenes_scripts/gui/buttons/tween_button.gd" id="10_nvp3t"]
+[ext_resource type="Script" path="res://scenes_scripts/gui/dev/dev_add_item.gd" id="11_2lajh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yq4y"]
+bg_color = Color(0.18, 0.18, 0.18, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_2068t"]
+allow_unpress = true
 
 [sub_resource type="Animation" id="Animation_0ika6"]
 length = 0.001
@@ -133,7 +147,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 offset_top = 257.0
 offset_right = 200.0
-offset_bottom = 621.0
+offset_bottom = 633.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 alignment = 1
@@ -164,15 +178,142 @@ text = "dev"
 script = ExtResource("2_y8s8o")
 menu = NodePath("../../../dev_menu")
 
-[node name="item_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("parent_menu")]
+[node name="item_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("item_slots", "name_label", "description_label", "use_button", "drop_button", "parent_menu")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_4yukx")
+script = ExtResource("8_1dkvu")
+item_slots = [NodePath("VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/item_buttons/0"), NodePath("VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/item_buttons/1"), NodePath("VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/item_buttons/2")]
+name_label = NodePath("VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/name/NameLabel")
+description_label = NodePath("VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/description/ScrollContainer/MarginContainer/DescriptionLabel")
+use_button = NodePath("VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Use")
+drop_button = NodePath("VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Drop")
 parent_menu = NodePath("../origin_menu")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/menu_manager/item_menu"]
+layout_mode = 0
+offset_top = 180.0
+offset_right = 370.0
+offset_bottom = 831.0
+theme_override_constants/separation = 15
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/menu_manager/item_menu/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2yq4y")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="item_buttons" type="HBoxContainer" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="0" type="Button" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/item_buttons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_mse6j")
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2068t")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_x1mn3")
+
+[node name="1" type="Button" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/item_buttons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_mse6j")
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2068t")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_x1mn3")
+
+[node name="2" type="Button" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/item_buttons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("1_mse6j")
+theme_type_variation = &"ItemButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2068t")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_x1mn3")
+
+[node name="name" type="PanelContainer" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/name"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 31
+horizontal_alignment = 1
+
+[node name="description" type="PanelContainer" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/description"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/description/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/description/ScrollContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 5.985)
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"DescriptionLabel"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Use" type="Button" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Use"
+script = ExtResource("10_nvp3t")
+
+[node name="Drop" type="Button" parent="MarginContainer/menu_manager/item_menu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Drop"
+script = ExtResource("10_nvp3t")
+
+[node name="BackButton" type="Button" parent="MarginContainer/menu_manager/item_menu/VBoxContainer" node_paths=PackedStringArray("menu")]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Back"
+script = ExtResource("2_y8s8o")
+menu = NodePath("../../../origin_menu")
+
 [node name="dev_menu" type="Control" parent="MarginContainer/menu_manager" node_paths=PackedStringArray("parent_menu")]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -188,32 +329,63 @@ offset_bottom = 40.0
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 
+[node name="die_type" type="LineEdit" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "normal"
+
 [node name="min" type="SpinBox" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 value = 1.0
 
 [node name="max" type="SpinBox" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 value = 10.0
 
 [node name="override" type="SpinBox" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 min_value = -1.0
 value = -1.0
 
 [node name="dice_mod" type="SpinBox" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 max_value = 20000.0
 
-[node name="queue_button" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("min_spinbox", "max_spinbox", "override_spinbox", "dice_mod_spinbox")]
+[node name="add_roll_die" type="CheckButton" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="queue_button" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("die_type", "min_spinbox", "max_spinbox", "override_spinbox", "dice_mod_spinbox", "add_roll_die_check")]
 layout_mode = 2
 theme = ExtResource("1_mse6j")
 text = "queue roll"
 script = ExtResource("7_8lfx8")
+die_type = NodePath("../die_type")
 min_spinbox = NodePath("../min")
 max_spinbox = NodePath("../max")
 override_spinbox = NodePath("../override")
 dice_mod_spinbox = NodePath("../dice_mod")
+add_roll_die_check = NodePath("../add_roll_die")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "item_test"
+
+[node name="add_item" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("root_parent", "line_edit")]
+layout_mode = 2
+theme = ExtResource("1_mse6j")
+text = "add item"
+script = ExtResource("11_2lajh")
+root_parent = NodePath("../../../../../..")
+line_edit = NodePath("../LineEdit")
 
 [node name="blank_menu" type="Control" parent="MarginContainer/menu_manager"]
 anchors_preset = 0

@@ -5,6 +5,9 @@ extends Node
 
 var parent: Player
 
+func init() -> void:
+	pass
+	
 func enter() -> void:
 	parent.sprite.play(animation_name)
 	

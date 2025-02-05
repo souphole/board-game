@@ -17,7 +17,9 @@ config/icon="res://assets/icon.svg"
 
 [autoload]
 
-global_dict="*res://scenes_scripts/data_store.gd"
+global_values="*res://scenes_scripts/autoloads/global_values.gd"
+dice="*res://scenes_scripts/autoloads/dice.gd"
+inventory="*res://scenes_scripts/autoloads/inventory.gd"
 
 [display]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bth0iqltc27ei"]
+[gd_scene load_steps=5 format=3 uid="uid://bbdfolti5owu2"]
 
 [ext_resource type="Script" path="res://scenes_scripts/gui/buttons/arrow_button.gd" id="1_7w7qq"]
 [ext_resource type="Texture2D" uid="uid://dujy0ed6jyq3s" path="res://assets/arrowwhite.png" id="1_ad71a"]

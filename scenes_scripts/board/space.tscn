@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhuh4qo4pmb4u"]
+[gd_scene load_steps=8 format=3 uid="uid://dhuh4qo4pmb4u"]
 
-[ext_resource type="Texture2D" uid="uid://c4etwgnui3q5j" path="res://assets/neutraltest.png" id="1_igaqp"]
+[ext_resource type="Texture2D" uid="uid://c4etwgnui3q5j" path="res://assets/spaces/neutraltest.png" id="1_igaqp"]
 [ext_resource type="Script" path="res://scenes_scripts/board/space.gd" id="1_xclqm"]
-[ext_resource type="Texture2D" uid="uid://m6poqo5nw6dm" path="res://assets/badtest.png" id="2_ffljn"]
-[ext_resource type="Texture2D" uid="uid://dalqrpfye25rk" path="res://assets/goodtest.png" id="4_vxdm1"]
+[ext_resource type="Texture2D" uid="uid://m6poqo5nw6dm" path="res://assets/spaces/badtest.png" id="2_ffljn"]
+[ext_resource type="Texture2D" uid="uid://dalqrpfye25rk" path="res://assets/spaces/goodtest.png" id="4_vxdm1"]
+[ext_resource type="Texture2D" uid="uid://ddq86wol56puf" path="res://assets/spaces/item.png" id="5_744y8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_woxnm"]
 radius = 64.0
@@ -28,6 +29,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("5_744y8")
+}],
+"loop": true,
+"name": &"default_item",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_vxdm1")
 }],
 "loop": true,
@@ -42,6 +51,5 @@ script = ExtResource("1_xclqm")
 shape = SubResource("CircleShape2D_woxnm")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -5)
 scale = Vector2(1, 0.625)
 sprite_frames = SubResource("SpriteFrames_qli2s")

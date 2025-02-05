@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ha5mkxm4kxeg"]
+[gd_scene load_steps=17 format=3 uid="uid://ha5mkxm4kxeg"]
 
 [ext_resource type="Texture2D" uid="uid://caooo36pk545s" path="res://assets/npesta.png" id="1_bw6n4"]
 [ext_resource type="Script" path="res://scenes_scripts/player/player.gd" id="1_hvt5w"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scenes_scripts/player/states/prepare_dice.gd" id="10_no384"]
 [ext_resource type="Script" path="res://scenes_scripts/player/states/await_jump.gd" id="12_mc8oc"]
 [ext_resource type="Script" path="res://scenes_scripts/player/states/jumping.gd" id="13_cunyn"]
+[ext_resource type="Script" path="res://scenes_scripts/player/default_item.gd" id="14_81bf8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4h1ke"]
 animations = [{
@@ -51,37 +52,47 @@ start_state = NodePath("init")
 script = ExtResource("4_q30mq")
 idle = NodePath("../idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("prepare_move", "prepare_dice")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("prepare_move", "prepare_dice", "default_item")]
 script = ExtResource("5_uh0e2")
-prepare_move = NodePath("../prepare_move")
-prepare_dice = NodePath("../prepare_dice")
+prepare_move = NodePath("../movement/prepare_move")
+prepare_dice = NodePath("../roll/prepare_dice")
+default_item = NodePath("../spaces/default_item")
 
-[node name="prepare_move" type="Node" parent="state_machine" node_paths=PackedStringArray("move", "spawn_arrows")]
+[node name="movement" type="Node" parent="state_machine"]
+
+[node name="prepare_move" type="Node" parent="state_machine/movement" node_paths=PackedStringArray("move", "spawn_arrows")]
 script = ExtResource("6_3k13u")
 move = NodePath("../move")
 spawn_arrows = NodePath("../spawn_arrows")
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("idle")]
+[node name="move" type="Node" parent="state_machine/movement" node_paths=PackedStringArray("idle")]
 script = ExtResource("6_poih0")
-idle = NodePath("../idle")
+idle = NodePath("../../idle")
 
-[node name="spawn_arrows" type="Node" parent="state_machine" node_paths=PackedStringArray("awaiting_arrow_click")]
+[node name="spawn_arrows" type="Node" parent="state_machine/movement" node_paths=PackedStringArray("awaiting_arrow_click")]
 script = ExtResource("7_ku1ub")
 awaiting_arrow_click = NodePath("../awaiting_arrow_click")
 
-[node name="awaiting_arrow_click" type="Node" parent="state_machine" node_paths=PackedStringArray("move")]
+[node name="awaiting_arrow_click" type="Node" parent="state_machine/movement" node_paths=PackedStringArray("move")]
 script = ExtResource("8_3petj")
 move = NodePath("../move")
 
-[node name="prepare_dice" type="Node" parent="state_machine" node_paths=PackedStringArray("await_jump")]
+[node name="roll" type="Node" parent="state_machine"]
+
+[node name="prepare_dice" type="Node" parent="state_machine/roll" node_paths=PackedStringArray("await_jump")]
 script = ExtResource("10_no384")
 await_jump = NodePath("../await_jump")
 
-[node name="await_jump" type="Node" parent="state_machine" node_paths=PackedStringArray("idle", "jumping")]
+[node name="await_jump" type="Node" parent="state_machine/roll" node_paths=PackedStringArray("idle", "jumping")]
 script = ExtResource("12_mc8oc")
-idle = NodePath("../idle")
+idle = NodePath("../../idle")
 jumping = NodePath("../jumping")
 
-[node name="jumping" type="Node" parent="state_machine" node_paths=PackedStringArray("await_jump")]
+[node name="jumping" type="Node" parent="state_machine/roll" node_paths=PackedStringArray("await_jump")]
 script = ExtResource("13_cunyn")
 await_jump = NodePath("../await_jump")
+
+[node name="spaces" type="Node" parent="state_machine"]
+
+[node name="default_item" type="Node" parent="state_machine/spaces"]
+script = ExtResource("14_81bf8")

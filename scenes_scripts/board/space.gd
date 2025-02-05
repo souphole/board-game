@@ -3,7 +3,7 @@ class_name Space
 extends Area2D
 
 @export_category("Space")
-@export_enum("default", "bad_test", "good_test") var type = "default"
+@export_enum("default", "bad_test", "good_test", "default_item") var type = "default"
 
 @export var branch_nodes: Array[Space]
 var has_branch_nodes = false
