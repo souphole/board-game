@@ -23,6 +23,7 @@ func add_item(item: Item):
 func use_item(index: int):
 	var used_item = inventory_array.pop_at(index)
 	used_items.append(used_item)
+	print("used items: ", used_items)
 	inventory_changed.emit()
 	
 func drop_item(index: int):
@@ -30,10 +31,10 @@ func drop_item(index: int):
 	inventory_changed.emit()
 
 func update_lifespans():
-	for item_index in range(len(used_items)):
-		var item = used_items[item_index]
-		
+	
+	var used_up_items: Array[Item]
+	
+	for item in used_items:
 		item.item_lifetime -= 1
 		
-		if item.item_lifetime <= 0:
-			used_items.pop_at(item_index)
+	used_items = used_items.filter(func(item): return item.item_lifetime > 0)
