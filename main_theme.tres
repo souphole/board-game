@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cov744d3wgiq6"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cov744d3wgiq6"]
 
 [ext_resource type="FontFile" uid="uid://bokjaj14oimx6" path="res://assets/BowlbyOne-Regular.ttf" id="1_dtdna"]
 
@@ -11,6 +11,25 @@ expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rxvd"]
+bg_color = Color(0.16, 0.155307, 0.1424, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.89, 0.89, 0.89, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6qnq"]
+bg_color = Color(0.09, 0.09, 0.09, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbw0e"]
 
@@ -38,6 +57,10 @@ ArrowButton/styles/normal = SubResource("StyleBoxEmpty_faaii")
 Button/font_sizes/font_size = 50
 Button/fonts/font = ExtResource("1_dtdna")
 Button/styles/hover = SubResource("StyleBoxFlat_4u54y")
+Card/base_type = &"PanelContainer"
+Card/styles/panel = SubResource("StyleBoxFlat_5rxvd")
+CardDescription/base_type = &"PanelContainer"
+CardDescription/styles/panel = SubResource("StyleBoxFlat_s6qnq")
 DescriptionLabel/base_type = &"Label"
 DescriptionLabel/constants/line_spacing = -2
 DescriptionLabel/font_sizes/font_size = 22

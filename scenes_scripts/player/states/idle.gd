@@ -31,7 +31,6 @@ func enter() -> void:
 			parent.gui.menu_manager.show_menu()
 			
 		inventory.update_lifespans()
-		print(inventory.used_items)
 		
 		check_space()
 
