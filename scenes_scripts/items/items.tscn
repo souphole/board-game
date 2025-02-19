@@ -1,50 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://deyr0eqh00gc2"]
+[gd_scene load_steps=5 format=3 uid="uid://deyr0eqh00gc2"]
 
 [ext_resource type="PackedScene" uid="uid://dk0ec3pma038p" path="res://scenes_scripts/items/item.tscn" id="1_wxqci"]
 [ext_resource type="Texture2D" uid="uid://dbe8qbosobebh" path="res://assets/aurora.png" id="2_al1k4"]
 [ext_resource type="Texture2D" uid="uid://do7yb74w43ydm" path="res://assets/test/test.png" id="3_tb3n7"]
+[ext_resource type="Texture2D" uid="uid://cr2ooveyxh22k" path="res://assets/test/test2.png" id="4_y548e"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olkaa"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
-bg_color = Color(0.16, 0.155307, 0.1424, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
+[node name="Items" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owcpc"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
-bg_color = Color(0.16, 0.155307, 0.1424, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-
-[node name="Items" type="Node"]
-
-[node name="Item" parent="." instance=ExtResource("1_wxqci")]
-theme_override_styles/panel = SubResource("StyleBoxFlat_olkaa")
+[node name="ItemTest" parent="." instance=ExtResource("1_wxqci")]
+layout_mode = 0
 item_name = "Aurora"
 item_image = ExtResource("2_al1k4")
-item_description = "\"When she sucking on your nuts but you're a tadpole\""
+item_description = "\"When she sucking on your nuts, but you're a tadpole.\""
+item_rarity = "legendary"
 
-[node name="Item2" parent="." instance=ExtResource("1_wxqci")]
-theme_override_styles/panel = SubResource("StyleBoxFlat_owcpc")
-item_name = "Long Test Long Test"
+[node name="ItemTest2" parent="." instance=ExtResource("1_wxqci")]
+layout_mode = 0
+item_name = "Formatting very long test"
 item_image = ExtResource("3_tb3n7")
 item_description = "Scroll Test
 Scroll Test
@@ -52,5 +28,12 @@ Scroll Test
 Scroll Test
 Scroll Test
 Scroll Test
-Scroll Test
 Scroll Test"
+
+[node name="ItemTest3" parent="." instance=ExtResource("1_wxqci")]
+layout_mode = 0
+item_name = "Lifetime test"
+item_image = ExtResource("4_y548e")
+item_description = "Will last 3 lifetimes"
+item_rarity = "rare"
+item_lifetime = 3

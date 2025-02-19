@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://wwvo6b54uoe"]
+[gd_scene load_steps=8 format=3 uid="uid://wwvo6b54uoe"]
 
+[ext_resource type="PackedScene" uid="uid://deyr0eqh00gc2" path="res://scenes_scripts/items/items.tscn" id="1_ettew"]
 [ext_resource type="PackedScene" uid="uid://hkqi7dcflgph" path="res://scenes_scripts/board/path_container.tscn" id="1_t7qfx"]
 [ext_resource type="PackedScene" uid="uid://dixchkd0i0xh6" path="res://scenes_scripts/board/space_container.tscn" id="2_esres"]
 [ext_resource type="PackedScene" uid="uid://dhuh4qo4pmb4u" path="res://scenes_scripts/board/space.tscn" id="2_nehqj"]
@@ -9,8 +10,12 @@
 
 [node name="main" type="Node2D"]
 
-[node name="GUI" parent="." instance=ExtResource("6_7vpvk")]
+[node name="Items" parent="." instance=ExtResource("1_ettew")]
+visible = false
+
+[node name="GUI" parent="." node_paths=PackedStringArray("items") instance=ExtResource("6_7vpvk")]
 layer = 0
+items = NodePath("../Items")
 
 [node name="Player" parent="." node_paths=PackedStringArray("gui", "path_container", "starting_space") instance=ExtResource("4_jjxjn")]
 gui = NodePath("../GUI")

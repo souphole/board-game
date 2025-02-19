@@ -2,59 +2,75 @@
 
 [ext_resource type="Script" path="res://scenes_scripts/items/item.gd" id="1_2ws0r"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2x3m3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_juk7s"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.16, 0.155307, 0.1424, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
-[node name="Item" type="PanelContainer" node_paths=PackedStringArray("name_label", "texture_rect", "description_label")]
+[node name="Item" type="Button" node_paths=PackedStringArray("panel_container", "name_label", "texture_rect", "description_label")]
 custom_minimum_size = Vector2(430, 600)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -215.0
-offset_top = -300.0
-offset_right = 215.0
-offset_bottom = 300.0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_type_variation = &"FlatButton"
+script = ExtResource("1_2ws0r")
+panel_container = NodePath("ItemStylebox")
+name_label = NodePath("ItemStylebox/VBoxContainer/NameLabel")
+texture_rect = NodePath("ItemStylebox/VBoxContainer/ImageContainer/TextureRect")
+description_label = NodePath("ItemStylebox/VBoxContainer/DescriptionContainer/ScrollContainer/MarginContainer/DescriptionLabel")
+
+[node name="ItemStylebox" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"Card"
-script = ExtResource("1_2ws0r")
-name_label = NodePath("VBoxContainer2/NameLabel")
-texture_rect = NodePath("VBoxContainer2/ImageContainer/TextureRect")
-description_label = NodePath("VBoxContainer2/DescriptionContainer/ScrollContainer/MarginContainer/DescriptionLabel")
+theme_override_styles/panel = SubResource("StyleBoxFlat_juk7s")
 
-[node name="Button" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemStylebox"]
 layout_mode = 2
+theme_override_constants/separation = 4
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+[node name="NameLabel" type="Label" parent="ItemStylebox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
-
-[node name="NameLabel" type="Label" parent="VBoxContainer2"]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="ImageContainer" type="PanelContainer" parent="VBoxContainer2"]
+[node name="ImageContainer" type="PanelContainer" parent="ItemStylebox/VBoxContainer"]
+clip_children = 1
 custom_minimum_size = Vector2(0, 270)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_2x3m3")
+theme_type_variation = &"CardDescription"
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/ImageContainer"]
+[node name="TextureRect" type="TextureRect" parent="ItemStylebox/VBoxContainer/ImageContainer"]
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 6
 
-[node name="DescriptionContainer" type="PanelContainer" parent="VBoxContainer2"]
+[node name="DescriptionContainer" type="PanelContainer" parent="ItemStylebox/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"CardDescription"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer2/DescriptionContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ItemStylebox/VBoxContainer/DescriptionContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/DescriptionContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ItemStylebox/VBoxContainer/DescriptionContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -63,7 +79,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="DescriptionLabel" type="Label" parent="VBoxContainer2/DescriptionContainer/ScrollContainer/MarginContainer"]
+[node name="DescriptionLabel" type="Label" parent="ItemStylebox/VBoxContainer/DescriptionContainer/ScrollContainer/MarginContainer"]
 custom_minimum_size = Vector2(0, 5.985)
 layout_mode = 2
 size_flags_vertical = 0

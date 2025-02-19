@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://enleak7pdcxk"]
+[gd_scene load_steps=20 format=3 uid="uid://enleak7pdcxk"]
 
 [ext_resource type="Script" path="res://scenes_scripts/gui/gui.gd" id="1_4xtbr"]
 [ext_resource type="Theme" uid="uid://cov744d3wgiq6" path="res://main_theme.tres" id="1_mse6j"]
@@ -12,82 +12,70 @@
 [ext_resource type="PackedScene" uid="uid://dk0ec3pma038p" path="res://scenes_scripts/items/item.tscn" id="10_7nv3y"]
 [ext_resource type="Script" path="res://scenes_scripts/gui/dev/dev_add_item.gd" id="11_2lajh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abrsx"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
-bg_color = Color(0.16, 0.155307, 0.1424, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tv5cy"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
-bg_color = Color(0.16, 0.155307, 0.1424, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcac1"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
-bg_color = Color(0.16, 0.155307, 0.1424, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-
 [sub_resource type="Animation" id="Animation_k4xb5"]
 resource_name = "item_hover"
 length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("card_scale_and_position:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.574349, 1),
+"transitions": PackedFloat32Array(0.4, 1),
 "update": 0,
-"values": [Vector2(0.4, 0.4), Vector2(0.5, 0.5)]
+"values": [Vector2(0, 40), Vector2(0, -185.51)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
+tracks/1/path = NodePath("card_scale_and_position:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(0.57435, 1),
+"transitions": PackedFloat32Array(0.4, 1),
 "update": 0,
-"values": [Vector2(960, 1120), Vector2(960, 884.06)]
+"values": [Vector2(0.4, 0.4), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_tch6y"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_3g75a"]
+resource_name = "item_hover_exit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("card_scale_and_position:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.4, 0.4),
+"update": 0,
+"values": [Vector2(0, -185.51), Vector2(0, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("card_scale_and_position:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.4, 0.4),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.4, 0.4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0qcxc"]
 _data = {
-"item_hover": SubResource("Animation_k4xb5")
+"RESET": SubResource("Animation_tch6y"),
+"item_hover": SubResource("Animation_k4xb5"),
+"item_hover_exit": SubResource("Animation_3g75a")
 }
 
 [sub_resource type="Animation" id="Animation_0ika6"]
@@ -307,7 +295,7 @@ layout_mode = 2
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "item_test"
+text = "ItemTest"
 
 [node name="add_item" type="Button" parent="MarginContainer/menu_manager/dev_menu/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("root_parent", "line_edit")]
 layout_mode = 2
@@ -318,54 +306,73 @@ root_parent = NodePath("../../../../../..")
 line_edit = NodePath("../LineEdit")
 
 [node name="blank_menu" type="Control" parent="MarginContainer/menu_manager"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_4yukx")
 
-[node name="item_menu" type="Control" parent="." node_paths=PackedStringArray("items_hbox", "animation")]
+[node name="item_menu" type="Control" parent="." node_paths=PackedStringArray("hover_enter", "hover_exit", "items_hbox", "animation")]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -185.518
-offset_bottom = -185.518
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.495583, 0.495583)
+size_flags_vertical = 8
 script = ExtResource("8_1dkvu")
-items_hbox = NodePath("ItemsHBox")
-animation = NodePath("../animation")
+hover_enter = NodePath("hover_enter")
+hover_exit = NodePath("hover_exit")
+items_hbox = NodePath("card_scale_and_position/ItemsHBox")
+animation = NodePath("item_animation")
 
-[node name="ItemsHBox" type="HBoxContainer" parent="item_menu"]
+[node name="hover_exit" type="Control" parent="item_menu"]
+anchors_preset = 0
+offset_left = -591.0
+offset_top = -363.0
+offset_right = 603.0
+offset_bottom = 186.0
+
+[node name="hover_enter" type="Control" parent="item_menu"]
+anchors_preset = 0
+offset_left = -508.0
+offset_top = -144.0
+offset_right = 509.0
+offset_bottom = 189.0
+
+[node name="card_scale_and_position" type="Control" parent="item_menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -663.0
+offset_top = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+
+[node name="ItemsHBox" type="HBoxContainer" parent="item_menu/card_scale_and_position"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -439.0
 offset_top = -300.0
-offset_right = 663.0
+offset_right = 439.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 18
 alignment = 1
 
-[node name="Item" parent="item_menu/ItemsHBox" instance=ExtResource("10_7nv3y")]
+[node name="Item" parent="item_menu/card_scale_and_position/ItemsHBox" instance=ExtResource("10_7nv3y")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_abrsx")
-
-[node name="Item2" parent="item_menu/ItemsHBox" instance=ExtResource("10_7nv3y")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tv5cy")
-
-[node name="Item3" parent="item_menu/ItemsHBox" instance=ExtResource("10_7nv3y")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_xcac1")
 
 [node name="item_animation" type="AnimationPlayer" parent="item_menu"]
 libraries = {

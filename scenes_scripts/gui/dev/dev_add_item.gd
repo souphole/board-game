@@ -7,4 +7,4 @@ extends DefaultButton
 func _pressed() -> void:
 	var new_item = root_parent.items.find_child(line_edit.text).duplicate()
 	inventory.add_item(new_item)
-	print(inventory.inventory_array)
+	print(inventory.inventory_dict)
